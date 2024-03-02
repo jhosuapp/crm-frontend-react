@@ -10,7 +10,6 @@ function App() {
       <>
         <Header />
         <main>
-          <p>jola</p>
           <Routing />
         </main>
       </>

@@ -1,3 +1,13 @@
+@use '../base/functions' as fun;
+@use '../base/variables' as var;
+
 main{
-    margin-top: 100px;
+    margin-top: var.$height-header;
+}
+
+.container{
+    margin: auto;
+    width: 90%;
+    max-width: var.$limit-width;
+    padding: 60px 0;
 }
