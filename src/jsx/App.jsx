@@ -2,18 +2,22 @@
 import { Header } from "./components/layout/Header.jsx";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routing } from "./routes/Routes.jsx";
+//Context
+import { ClientProvider } from './context/ClientContext.jsx';
 
 function App() {
 
   return (
-    <Router>
-      <>
-        <Header />
-        <main>
-          <Routing />
-        </main>
-      </>
-    </Router>
+    <ClientProvider>
+      <Router>
+        <>
+          <Header />
+          <main>
+            <Routing />
+          </main>
+        </>
+      </Router>
+    </ClientProvider>
   )
 }
 

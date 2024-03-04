@@ -1,7 +1,7 @@
-const ClientsList = ({ name, last_name, phone })=>{
+const ClientsList = ({ _id, name, last_name, phone })=>{
     return(
         <>
-            <p>{name}{last_name}{phone}</p>
+            <p key={ _id }>{name}{last_name}{phone}</p>
         </>
     )
 }
