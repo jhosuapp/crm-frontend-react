@@ -13,6 +13,7 @@ const ClientProvider = ({ children })=>{
     //Request async
     const request = async ()=>{
         const requestClients = await baseAxios.get('/clientes');
+        console.log(requestClients);
         setSaveClients(requestClients.data);
     }
     //Efect

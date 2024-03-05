@@ -2,11 +2,12 @@
 $palette:(
     'white': #fff,
     'black': #000,
-    'primary': #9EFF00,
-    'secondary': #00FFF0,
-    'tertiary': #9747FF,
+    'primary': #0c2d57,
+    'secondary': #f39200,
+    'tertiary': #0c2d57,
     'cuartary': #680CFF,
-    'danger': rgb(231, 99, 99)
+    'danger': rgb(231, 99, 99),
+    'bg': rgb(241, 241, 241)
 );
 //BREAKPOINTS
 $breakpoints: (

@@ -1,0 +1,15 @@
+@use '../base/functions' as fun;
+
+.custom-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media(max-width: fun.breakpoints('ipad-big')){
+    .custom-title{
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

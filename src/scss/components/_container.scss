@@ -2,12 +2,20 @@
 @use '../base/variables' as var;
 
 main{
-    margin-top: var.$height-header;
+    padding-top: var.$height-header;
+    background-color: fun.color('bg');
+    min-height: 100vh;
 }
 
 .container{
     margin: auto;
     width: 90%;
     max-width: var.$limit-width;
-    padding: 60px 0;
+    position: relative;
+    &--bg{
+        background-color: fun.color('white');
+        padding: 20px;
+        margin-top: 30px;
+        border: 2px solid rgb(236, 236, 236);
+    }
 }

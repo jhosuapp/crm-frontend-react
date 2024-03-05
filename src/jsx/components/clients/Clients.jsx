@@ -14,14 +14,20 @@ const Clients = ()=>{
     const { saveClients, error } = useContext(ClientContext);
 
     return (
-        <Container cls={'container custom-fonts'}>  
-            <Title text={'Mis clientes'} />
-            {saveClients.map((client)=>{
-                const { _id, nombre, apellido, telefono, } = client;
-                return <ClientsList  key={ _id } name={ nombre } last_name={ apellido } phone={telefono}  />
-            })}
-            {error && <ClientError />}
-        </Container>
+        <>
+            <Container cls={'container container--bg custom-fonts'}>  
+                <Title text={'Mis clientes'} btn_text="Crear cliente" />
+                {error && <ClientError />}
+            </Container>
+            <Container cls={'container container--bg custom-fonts'}>
+                <article className="clients-list">
+                    {saveClients.map((client)=>{
+                        const { _id, nombre, apellido, telefono, email } = client;
+                        return <ClientsList  key={ _id } name={ nombre } last_name={ apellido } phone={ telefono } email={ email } />
+                    })}
+                </article>
+            </Container>
+        </>
     )
 }
 

@@ -1,9 +1,18 @@
 @use '../base/functions' as fun;
+
 .custom-fonts{
     h1{ 
-        font-size: 3rem;
+        font-size: 2.7rem;
         text-transform: uppercase;
         text-align: center;
-        color: fun.color('tertiary');
+        color: fun.color('secondary');
+    }
+}
+
+@media(max-width: fun.breakpoints('ipad-big')){
+    .custom-fonts{
+        h1{ 
+            font-size: 2rem;
+        }
     }
 }

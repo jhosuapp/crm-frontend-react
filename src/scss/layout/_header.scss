@@ -10,6 +10,7 @@ header{
     top: 0;
     background-color: fun.color('tertiary');
     padding: 10px;
+    z-index: 10;
     > div{
         width: 90%;
         max-width: var.$limit-width;
