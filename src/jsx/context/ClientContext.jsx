@@ -9,6 +9,7 @@ const ClientContext = createContext();
 const ClientProvider = ({ children })=>{
     //States
     const [ saveClients, setSaveClients ] = useState([]);
+    const [ error, setError ] = useState(false);
     //Request async
     const request = async ()=>{
         const requestClients = await baseAxios.get('/clientes');
@@ -16,11 +17,13 @@ const ClientProvider = ({ children })=>{
     }
     //Efect
     useEffect(()=>{
-        request();
+        request().catch((err)=>{
+            setError(true);
+        });
     }, []);
 
     return (
-        <ClientContext.Provider value={ { saveClients } }>
+        <ClientContext.Provider value={ { saveClients, error } }>
             { children }
         </ClientContext.Provider>
     )

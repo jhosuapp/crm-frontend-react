@@ -1,0 +1,13 @@
+@use '../base/functions' as fun;
+
+.error{
+    width: 100%;
+    background-color: fun.color('danger');
+    padding: 10px 30px;
+    font-size: 1.5rem;
+    color: fun.color('white');
+    text-align: center;
+    border-radius: 5px;
+    width: fit-content;
+    margin: 30px auto;
+}
