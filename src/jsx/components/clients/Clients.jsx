@@ -21,10 +21,9 @@ const Clients = ()=>{
             </Container>
             <Container cls={'container container--bg custom-fonts'}>
                 <article className="clients-list">
-                    {saveClients.map((client)=>{
-                        const { _id, nombre, apellido, telefono, email } = client;
-                        return <ClientsList  key={ _id } name={ nombre } last_name={ apellido } phone={ telefono } email={ email } />
-                    })}
+                    {saveClients.map((client)=>(
+                        <ClientsList  key={ client._id } client={ client } />
+                    ))}
                 </article>
             </Container>
         </>
