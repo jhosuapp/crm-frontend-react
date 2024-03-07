@@ -2,4 +2,77 @@
 
 //Clients list
 .clients-list{  
+    &__header,
+    &__body{
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(231, 231, 231);
+        padding: 10px;
+        border-radius: 10px;
+        p{
+            font-size: 1.6rem;
+        }
+        .item{
+            flex: 1;
+            &:last-child,
+            &:nth-child(4){
+                display: flex;
+                justify-content: center;
+                max-width: 100px;
+            }
+        }
+    }
+    &__header{
+        p{
+            font-weight: 500;
+        }
+    }
+    &__body{
+        &:nth-child(even){
+            background-color: #fff;
+        }
+        &:nth-child(odd){
+            background-color: rgb(243, 243, 243);
+        }
+        button{
+            outline: inherit;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            &:hover{
+                opacity: .7;
+            }
+            img{
+                width: 18px;
+            }
+        }
+        .item{
+            margin: 5px 0;
+        }
+    }
+}
+
+@media(max-width: fun.breakpoints('ipad-big')){
+    .clients-list{  
+        &__header{
+            display: none;
+        }
+        &__body{
+            flex-direction: column;
+            margin-bottom: 20px;
+            &:nth-child(even){
+                background-color: rgb(246, 246, 246);
+            }
+            .item{
+                max-width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &:nth-child(4),
+                &:last-child{
+                    max-width: 100%;
+                }
+            }
+        }
+    }
 }

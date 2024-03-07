@@ -3,14 +3,14 @@ import iconEdit from '../../../assets/svg/icon-edit.svg';
 
 const ClientActions = ()=>{
     return(
-        <div className="actions">
-            <button>
-                <img src={ iconDelete } alt="icon delete" />
-            </button>
-            <button>
+        <>
+            <button className="item">
                 <img src={ iconEdit } alt="icon edit" />
             </button>
-        </div>
+            <button className="item">
+                <img src={ iconDelete } alt="icon delete" />
+            </button>
+        </>
     );
 }
 

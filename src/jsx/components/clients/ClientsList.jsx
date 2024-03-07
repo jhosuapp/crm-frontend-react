@@ -5,9 +5,9 @@ const ClientsList = ({ client })=>{
     const { _id, nombre, apellido, telefono, email } = client;
 
     return(
-        <div className="block" key={ _id }>
+        <div className="clients-list__body" key={ _id }>
             <div className="item">
-                <h4>{nombre}{apellido}</h4>
+                <p>{nombre} {apellido}</p>
             </div>
             <div className="item">
                 <p>{email}</p>
