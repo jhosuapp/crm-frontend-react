@@ -1,0 +1,11 @@
+.custom-form{
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 30px;
+    padding: 30px;
+    .block-actions,
+    .w100{
+        grid-column: 1/3;
+    }
+}

@@ -13,4 +13,19 @@
             box-shadow: 0 0 5px #d3d3d3;
         }
     }
+    label{
+        font-size: 1.4rem;
+        color: fun.color('primary');
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: flex;
+    }
+    .block-input{
+        margin-bottom: 20px;
+    }
+    .block-actions{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
 }

@@ -18,7 +18,7 @@ const Clients = ()=>{
     return (
         <>
             <Container cls={'container container--bg custom-fonts'}>  
-                <Title text={'Mis clientes'} btn_text="Crear cliente" />
+                <Title text_title={'Mis clientes'} btn_text="Crear cliente" btn_link={'/clientes/crear'} />
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
                 {filterState.length > 0 && <ClientFilter />}

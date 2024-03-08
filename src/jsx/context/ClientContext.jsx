@@ -18,6 +18,7 @@ const ClientProvider = ({ children })=>{
     const request = async ()=>{
         const requestClients = await baseAxios.get('/clientes');
         setSaveClients(requestClients.data);
+        console.log(requestClients);
     }
     //Filter clients
     const filterClients = ()=>{
