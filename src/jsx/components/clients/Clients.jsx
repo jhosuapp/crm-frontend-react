@@ -7,6 +7,7 @@ import { Title } from '../global/Title';
 import { ClientsList } from './ClientsList';
 import { ClientError } from './ClientError';
 import { ClientHeader } from './ClientHeader';
+import { ClientFilter } from './ClientFilter';
 //Context
 import { ClientContext } from '../../context/ClientContext';
 
@@ -19,7 +20,8 @@ const Clients = ()=>{
             <Container cls={'container container--bg custom-fonts'}>  
                 <Title text={'Mis clientes'} btn_text="Crear cliente" />
             </Container>
-            <Container cls={'container container--bg custom-fonts'}>
+            <Container cls={'container container--bg custom-fonts custom-input'}>
+                <ClientFilter />
                 <article className="clients-list">
                     <ClientHeader />
                     {saveClients.map((client)=>(

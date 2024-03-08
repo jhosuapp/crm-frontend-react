@@ -52,6 +52,22 @@
     }
 }
 
+//Clients filter
+.clients-filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    form{
+        width: 100%;
+        max-width: 200px;
+    }
+    b{
+        font-weight: 600;
+    }
+}
+
 @media(max-width: fun.breakpoints('ipad-big')){
     .clients-list{  
         &__header{
@@ -73,6 +89,17 @@
                     max-width: 100%;
                 }
             }
+        }
+    }
+    .clients-filter{
+        display: flex;
+        flex-direction: column;
+        form{
+            width: 100%;
+            max-width: 200px;
+        }
+        b{
+            font-weight: 600;
         }
     }
 }

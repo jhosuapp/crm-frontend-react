@@ -7,12 +7,18 @@
         text-align: center;
         color: fun.color('secondary');
     }
+    p{
+        font-size: 1.7rem
+    }
 }
 
 @media(max-width: fun.breakpoints('ipad-big')){
     .custom-fonts{
         h1{ 
             font-size: 2rem;
+        }
+        p{
+            font-size: 1.6rem;
         }
     }
 }

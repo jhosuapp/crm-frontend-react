@@ -1,0 +1,16 @@
+@use '../base/functions' as fun;
+
+.custom-input{
+    input{
+        border: 2px solid fun.color('secondary');
+        border-radius: 5px;
+        padding: 10px;
+        outline: inherit;
+        width: 100%;
+        transition: .5s ease box-shadow;
+        font-size: 1.4rem;
+        &:focus{
+            box-shadow: 0 0 5px #d3d3d3;
+        }
+    }
+}
