@@ -13,7 +13,7 @@ import { ClientContext } from '../../context/ClientContext';
 
 const Clients = ()=>{
     //Context
-    const { filterState, error } = useContext(ClientContext);
+    const { filterState, saveClients, error } = useContext(ClientContext);
 
     return (
         <>
@@ -21,7 +21,7 @@ const Clients = ()=>{
                 <Title text_title={'Mis clientes'} btn_text="Crear cliente" btn_link={'/clientes/crear'} />
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
-                {filterState.length > 0 && <ClientFilter />}
+                {saveClients.length > 0 && <ClientFilter />}
                 <article className="clients-list">
                     { filterState.length > 0 && <ClientHeader />}
                     {filterState.map((client)=>(
