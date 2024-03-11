@@ -3,12 +3,24 @@ import { useForm } from "react-hook-form"
 //Components
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
+import { baseAxios } from '../../config/Axios';
 
 const ClientCreate = ()=>{
     const { register, handleSubmit, formState: { errors } } = useForm();
     //Request
-    const request = (body)=>{
-        console.log(body)
+    const request = async (body)=>{
+        //Conex to endpoint
+        await baseAxios.post('/clientes', body)
+            .then(res =>{
+                const { data:{ code } } = res;
+                if(code == 11000){
+                    alert('El correo ya ha sido registrado');
+                }else{
+                    alert('El usuario ha sido creado de manera exitosa');
+                }
+            }).catch((err)=>{
+                console.log(err);
+            });
     }
     //Request when all input are ok
     const onSubmit = data => data && request(data);
@@ -20,7 +32,7 @@ const ClientCreate = ()=>{
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
 
-                <form className='custom-form' onSubmit={ handleSubmit(onSubmit) }>
+                <form className='custom-form' onSubmit={ handleSubmit(onSubmit) } noValidate={true}>
                     <div className="block-input">
                         <label htmlFor="nombre">Nombre</label>
                         <input 
@@ -57,7 +69,11 @@ const ClientCreate = ()=>{
                             type="email" id="email"
                             name="email" 
                             placeholder='Email'
-                            {...register("email", { required: 'Este campo es requerido', maxLength: {value: 50, message: 'El límite permitido de caracteres es 50' }} )}
+                            {...register("email", { 
+                                required: 'Este campo es requerido', 
+                                maxLength: { value: 50, message: 'El límite permitido de caracteres es 50' },
+                                pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,message: "Dirección de correo electrónico inválida" }
+                            })}
                         />
                         {errors.email && <p className="error--form">{errors.email.message}</p>}
                     </div>
