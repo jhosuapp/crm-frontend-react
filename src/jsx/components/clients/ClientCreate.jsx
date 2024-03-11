@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
+import { ClientModel } from './ClientModel';
 
 
 const ClientCreate = ()=>{
+
+    const [ clientForm, setClientForm ] = useState(ClientModel);
+    //Update state
+    const handleChange = (event) => { 
+        setClientForm({
+            ...clientForm,
+            [event.target.name] : event.target.value
+        });
+    }
+
     return (
         <>
             <Container cls={'container container--bg custom-fonts'}>  
@@ -12,24 +24,49 @@ const ClientCreate = ()=>{
 
                 <form className='custom-form'>
                     <div className="block-input">
-                        <label htmlFor="name">Nombre</label>
-                        <input type="text" id="name" name="name" placeholder='Nombre'/>
+                        <label htmlFor="nombre">Nombre</label>
+                        <input 
+                            type="text" id="nombre"
+                            name="nombre" 
+                            placeholder='Nombre'
+                            onChange={ (event)=> handleChange(event) }
+                        />
                     </div>
                     <div className="block-input">
-                        <label htmlFor="last_name">Apellido</label>
-                        <input type="text" id="last_name" name="last_name" placeholder='Apellido'/>
+                        <label htmlFor="apellido">Apellido</label>
+                        <input 
+                            type="text" id="apellido"
+                            name="apellido" 
+                            placeholder='Apellido'
+                            onChange={ (event)=> handleChange(event) }
+                        />
                     </div>
                     <div className="block-input">
-                        <label htmlFor="phone">Télefono</label>
-                        <input type="text" id="phone" name="phone" placeholder='Télefono'/>
+                        <label htmlFor="telefono">Télefono</label>
+                        <input 
+                            type="text" id="telefono"
+                            name="telefono" 
+                            placeholder='Télefono'
+                            onChange={ (event)=> handleChange(event) }
+                        />
                     </div>
                     <div className="block-input">
                         <label htmlFor="email">Email</label>
-                        <input type="text" id="email" name="email" placeholder='Email'/>
+                        <input 
+                            type="text" id="email"
+                            name="email" 
+                            placeholder='Email'
+                            onChange={ (event)=> handleChange(event) }
+                        />
                     </div>
                     <div className="block-input">
-                        <label htmlFor="company">Empresa</label>
-                        <input type="text" id="company" name="company" placeholder='Empresa'/>
+                        <label htmlFor="empresa">Empresa</label>
+                        <input 
+                            type="text" id="empresa"
+                            name="empresa" 
+                            placeholder='Empresa'
+                            onChange={ (event)=> handleChange(event) }
+                        />
                     </div>
 
                     <div className="block-actions">
