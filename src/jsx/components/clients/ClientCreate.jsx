@@ -1,19 +1,17 @@
-import { useState } from 'react';
+//Hooks
+import { useForm } from "react-hook-form"
+//Components
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
-import { ClientModel } from './ClientModel';
-
 
 const ClientCreate = ()=>{
-
-    const [ clientForm, setClientForm ] = useState(ClientModel);
-    //Update state
-    const handleChange = (event) => { 
-        setClientForm({
-            ...clientForm,
-            [event.target.name] : event.target.value
-        });
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    //Request
+    const request = (body)=>{
+        console.log(body)
     }
+    //Request when all input are ok
+    const onSubmit = data => data && request(data);
 
     return (
         <>
@@ -22,15 +20,16 @@ const ClientCreate = ()=>{
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
 
-                <form className='custom-form'>
+                <form className='custom-form' onSubmit={ handleSubmit(onSubmit) }>
                     <div className="block-input">
                         <label htmlFor="nombre">Nombre</label>
                         <input 
                             type="text" id="nombre"
                             name="nombre" 
                             placeholder='Nombre'
-                            onChange={ (event)=> handleChange(event) }
+                            {...register("nombre", { required: 'Este campo es requerido', maxLength: { value: 30, message: 'El límite permitido de caracteres es 30' } })}
                         />
+                        {errors.nombre && <p className="error--form">{errors.nombre.message}</p>}
                     </div>
                     <div className="block-input">
                         <label htmlFor="apellido">Apellido</label>
@@ -38,8 +37,9 @@ const ClientCreate = ()=>{
                             type="text" id="apellido"
                             name="apellido" 
                             placeholder='Apellido'
-                            onChange={ (event)=> handleChange(event) }
+                            {...register("apellido", { required: 'Este campo es requerido', maxLength: {value: 50, message: 'El límite permitido de caracteres es 30' }} )}
                         />
+                        {errors.apellido && <p className="error--form">{errors.apellido.message}</p>}
                     </div>
                     <div className="block-input">
                         <label htmlFor="telefono">Télefono</label>
@@ -47,17 +47,19 @@ const ClientCreate = ()=>{
                             type="text" id="telefono"
                             name="telefono" 
                             placeholder='Télefono'
-                            onChange={ (event)=> handleChange(event) }
+                            {...register("telefono", { required: 'Este campo es requerido', maxLength: {value: 12, message: 'El límite permitido de caracteres es 30' }} )}
                         />
+                        {errors.telefono && <p className="error--form">{errors.telefono.message}</p>}
                     </div>
                     <div className="block-input">
                         <label htmlFor="email">Email</label>
                         <input 
-                            type="text" id="email"
+                            type="email" id="email"
                             name="email" 
                             placeholder='Email'
-                            onChange={ (event)=> handleChange(event) }
+                            {...register("email", { required: 'Este campo es requerido', maxLength: {value: 50, message: 'El límite permitido de caracteres es 50' }} )}
                         />
+                        {errors.email && <p className="error--form">{errors.email.message}</p>}
                     </div>
                     <div className="block-input">
                         <label htmlFor="empresa">Empresa</label>
@@ -65,8 +67,9 @@ const ClientCreate = ()=>{
                             type="text" id="empresa"
                             name="empresa" 
                             placeholder='Empresa'
-                            onChange={ (event)=> handleChange(event) }
+                            {...register("empresa", { required: 'Este campo es requerido', maxLength: {value: 50, message: 'El límite permitido de caracteres es 50' } })}
                         />
+                        {errors.empresa && <p className="error--form">{errors.empresa.message}</p>}
                     </div>
 
                     <div className="block-actions">
