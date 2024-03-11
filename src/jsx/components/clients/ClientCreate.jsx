@@ -1,25 +1,33 @@
 //Hooks
 import { useForm } from "react-hook-form"
+import { useState } from "react";
 //Components
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
+import { Modal } from "../global/Modal";
 import { baseAxios } from '../../config/Axios';
+//Icons
+import iconError from '../../../assets/svg/icon-error.svg';
+import iconSuccess from '../../../assets/svg/icon-success.svg';
 
 const ClientCreate = ()=>{
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [ error, setError ] = useState(false);
+    const [ modal, setModal ] = useState(false);
     //Request
     const request = async (body)=>{
         //Conex to endpoint
         await baseAxios.post('/clientes', body)
             .then(res =>{
                 const { data:{ code } } = res;
-                if(code == 11000){
-                    alert('El correo ya ha sido registrado');
-                }else{
-                    alert('El usuario ha sido creado de manera exitosa');
-                }
+                //Validate success register
+                code == 11000 ? setError(true) : setError(false);
+                //Enable modal
+                setModal(true);
             }).catch((err)=>{
-                console.log(err);
+                //Enable modal
+                setModal(true);
+                setError(true);
             });
     }
     //Request when all input are ok
@@ -31,7 +39,6 @@ const ClientCreate = ()=>{
                 <Title text_title={'Crear cliente'} cls={'reverse'} btn_text={'volver'} btn_link={'/'} />
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
-
                 <form className='custom-form' onSubmit={ handleSubmit(onSubmit) } noValidate={true}>
                     <div className="block-input">
                         <label htmlFor="nombre">Nombre</label>
@@ -91,10 +98,15 @@ const ClientCreate = ()=>{
                     <div className="block-actions">
                         <button className="btn">Crear cliente</button>
                     </div>
-
                 </form>
-
             </Container>
+            {/* Modal */}
+            <Modal 
+                cls={`${error ? 'modal--error' : 'modal--success'} ${modal && 'active'}`} 
+                icon={error ? iconError : iconSuccess} 
+                message={`${error ? 'El correo ingresado ya se encuentra registrado' : 'Registro exitoso'}`} 
+                link={'/'} 
+            />
         </>
     );
 }
