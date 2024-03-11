@@ -24,9 +24,9 @@ const Clients = ()=>{
                 {saveClients.length > 0 && <ClientFilter />}
                 <article className="clients-list">
                     { filterState.length > 0 && <ClientHeader />}
-                    {filterState.map((client)=>(
+                    { filterState.map((client)=>(
                         <ClientsList  key={ client._id } client={ client } />
-                    ))}
+                    )) }
                 </article>
                 {error && <ClientError />}
             </Container>

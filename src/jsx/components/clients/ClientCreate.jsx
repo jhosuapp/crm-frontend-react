@@ -1,19 +1,19 @@
 //Hooks
 import { useForm } from "react-hook-form"
-import { useState } from "react";
+import { useContext } from "react";
 //Components
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
 import { Modal } from "../global/Modal";
 import { baseAxios } from '../../config/Axios';
-//Icons
-import iconError from '../../../assets/svg/icon-error.svg';
-import iconSuccess from '../../../assets/svg/icon-success.svg';
+//Global context 
+import { GlobalContext } from '../../context/GlobalContext';
 
 const ClientCreate = ()=>{
+    //Global context
+    const { globalModal, setGlobalModal, globalError, setGlobalError } = useContext(GlobalContext);
+    //Hook form react
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [ error, setError ] = useState(false);
-    const [ modal, setModal ] = useState(false);
     //Request
     const request = async (body)=>{
         //Conex to endpoint
@@ -21,13 +21,13 @@ const ClientCreate = ()=>{
             .then(res =>{
                 const { data:{ code } } = res;
                 //Validate success register
-                code == 11000 ? setError(true) : setError(false);
+                code == 11000 ? setGlobalError(true) : setGlobalError(false);
                 //Enable modal
-                setModal(true);
+                setGlobalModal(true);
             }).catch((err)=>{
                 //Enable modal
-                setModal(true);
-                setError(true);
+                setGlobalModal(true);
+                setGlobalError(true);
             });
     }
     //Request when all input are ok
@@ -102,9 +102,9 @@ const ClientCreate = ()=>{
             </Container>
             {/* Modal */}
             <Modal 
-                cls={`${error ? 'modal--error' : 'modal--success'} ${modal && 'active'}`} 
-                icon={error ? iconError : iconSuccess} 
-                message={`${error ? 'El correo ingresado ya se encuentra registrado' : 'Registro exitoso'}`} 
+                cls={`${globalError ? 'modal--error' : 'modal--success'} ${globalModal && 'active'}`} 
+                icon={globalError} 
+                message={`${globalError ? 'El correo ingresado ya se encuentra registrado' : 'Registro exitoso'}`} 
                 link={'/'} 
             />
         </>

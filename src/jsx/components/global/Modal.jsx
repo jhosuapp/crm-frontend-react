@@ -1,15 +1,25 @@
 import { Link } from 'react-router-dom';
+//Hooks react
+import { useContext } from 'react';
+//Global context
+import { GlobalContext } from '../../context/GlobalContext';
+//Icons
+import iconError from '../../../assets/svg/icon-error.svg';
+import iconSuccess from '../../../assets/svg/icon-success.svg';
 
 const Modal = ({ cls, icon, message, link })=>{
+
+    const  { setGlobalModal } = useContext(GlobalContext);
+    
     return(
         <section className={`modal ${cls}`}>
             <article className="modal__bg"></article>
             <article className="modal__content">
                 <picture>
-                    <img src={icon} alt="icon" />
+                    <img src={icon ? iconError : iconSuccess} alt="icon" />
                 </picture>
                 <p>{ message }</p>
-                <Link to={ link } className="btn">continuar</Link>
+                <Link to={ link } className="btn" onClick={()=>{ setGlobalModal(false) }}>continuar</Link>
             </article>
         </section>
     )
