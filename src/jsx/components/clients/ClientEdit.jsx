@@ -1,6 +1,7 @@
 //Hooks
+import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 //Components
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
@@ -9,12 +10,31 @@ import { baseAxios } from '../../config/Axios';
 //Global context 
 import { GlobalContext } from '../../context/GlobalContext';
 
+
 const ClientEdit = ()=>{
+    //Get id client
+    const { id } = useParams();
     //Global context
     const { globalModal, setGlobalModal, globalError, setGlobalError } = useContext(GlobalContext);
     //Hook form react
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    //Request
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+    //Request for get client data
+    const requestGetClient = async () => {
+        const dataClient = await baseAxios.get(`/clientes/${id}`);
+        return dataClient;
+    }
+    //Execute effect
+    useEffect(()=>{
+        requestGetClient().then((res)=>{
+            const { data:{ nombre, apellido, email, empresa} } = res;
+            const valuesToSet = { nombre, apellido, email, empresa };
+            //Set values on a inputs
+            Object.keys(valuesToSet).forEach(key => {
+              setValue(key, valuesToSet[key]);
+            });
+        });
+    },[]);
+    //Request for update clients
     const request = async (body)=>{
         //Conex to endpoint
         await baseAxios.post('/clientes', body)
@@ -96,7 +116,7 @@ const ClientEdit = ()=>{
                     </div>
 
                     <div className="block-actions">
-                        <button className="btn">Editar cliente</button>
+                        <button className="btn">Guardar cambios</button>
                     </div>
                 </form>
             </Container>
