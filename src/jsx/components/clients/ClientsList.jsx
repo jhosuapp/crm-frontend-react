@@ -15,7 +15,7 @@ const ClientsList = ({ client })=>{
             <div className="item">
                 <p>{telefono}</p>
             </div>
-            <ClientActions />
+            <ClientActions id_client={_id} />
         </div>
     )
 }
