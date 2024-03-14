@@ -1,5 +1,5 @@
 //Hooks
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 //Components
 import { Container } from '../global/Container';
