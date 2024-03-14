@@ -26,8 +26,8 @@ const ClientEdit = ()=>{
     //Execute effect
     useEffect(()=>{
         requestGetClient().then((res)=>{
-            const { data:{ nombre, apellido, email, empresa} } = res;
-            const valuesToSet = { nombre, apellido, email, empresa };
+            const { data:{ nombre, apellido, telefono, email, empresa} } = res;
+            const valuesToSet = { nombre, apellido, telefono, email, empresa };
             //Set values on a inputs
             Object.keys(valuesToSet).forEach(key => {
               setValue(key, valuesToSet[key]);
@@ -37,7 +37,7 @@ const ClientEdit = ()=>{
     //Request for update clients
     const request = async (body)=>{
         //Conex to endpoint
-        await baseAxios.post('/clientes', body)
+        await baseAxios.put(`/clientes/${id}`, body)
             .then(res =>{
                 const { data:{ code } } = res;
                 //Validate success register
@@ -124,7 +124,7 @@ const ClientEdit = ()=>{
             <Modal 
                 cls={`${globalError ? 'modal--error' : 'modal--success'} ${globalModal && 'active'}`} 
                 icon={globalError} 
-                message={`${globalError ? 'El correo ingresado ya se encuentra registrado' : 'Registro exitoso'}`} 
+                message={`${globalError ? 'El correo ingresado ya se encuentra registrado' : 'Actualización exitosa'}`} 
                 link={'/'} 
             />
         </>
