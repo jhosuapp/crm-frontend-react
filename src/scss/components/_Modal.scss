@@ -53,6 +53,13 @@
             }
         }
     }
+    .block{
+        display: flex;
+        gap: 20px;
+        .btn{
+            flex: 1;
+        }
+    }
     &--error{
         .modal__content{
             box-shadow: 0 0 15px fun.color('danger');
@@ -68,6 +75,21 @@
             .btn{
                 background-color: fun.color('success');
                 border-color: fun.color('success');
+            }
+        }
+    }
+}
+
+@media(max-width: fun.breakpoints('ipad-big')){
+    .modal{
+        .block{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            .btn{
+                min-height: 40px;
+                width: 100%;
             }
         }
     }

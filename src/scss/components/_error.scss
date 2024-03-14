@@ -10,6 +10,9 @@
     border-radius: 5px;
     width: fit-content;
     margin: 30px auto;
+    &.secondary{
+        background-color: fun.color('secondary');
+    }
 }
 
 p.error--form{

@@ -5,12 +5,13 @@ import iconDelete from '../../../assets/svg/icon-delete.svg';
 import { GlobalContext } from '../../context/GlobalContext';
 //Component
 import { Modal } from '../global/Modal';
+import { ModalConfirm } from "../global/ModalConfirm";
 //Axios
 import { baseAxios } from '../../config/Axios';
 
 const DeleteClient = ( { id_client } )=>{
     //Global context
-    const { globalModal, setGlobalModal, globalError, setGlobalError } = useContext(GlobalContext);
+    const { globalModal, setGlobalModal, globalError, setGlobalError, globalModalConfirm, setGlobalModalConfirm } = useContext(GlobalContext);
     //Request
     const request = async () =>{
         const response = await baseAxios.delete(`/clientes/${id_client}`);
@@ -30,10 +31,9 @@ const DeleteClient = ( { id_client } )=>{
             setGlobalError(true);
         });
     }
-
     return(
         <>
-            <button className="item" onClick={()=>{  deleteClient(); }}>
+            <button className="item" onClick={ ()=>{ setGlobalModalConfirm(true) } }>
                 <img src={ iconDelete } alt="icon delete" />
             </button>
             {/* Modal */}
@@ -42,6 +42,12 @@ const DeleteClient = ( { id_client } )=>{
                 icon={globalError} 
                 message={`${globalError ? 'El cliente no ha podido ser eliminado, intetanlo nuevamente' : 'Cliente eliminado de manera exitosa'}`} 
                 link={'/'}
+            />
+            {/* Modal confirm */}
+            <ModalConfirm 
+                cls={`${globalModalConfirm && 'active'}`}
+                message={'Estas seguro de eliminar a tu cliente, esta acción no se puede reversar'} 
+                handleEvent={ deleteClient }
             />
         </>
     );

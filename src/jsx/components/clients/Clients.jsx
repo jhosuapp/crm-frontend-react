@@ -54,13 +54,14 @@ const Clients = ()=>{
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
                 {saveClients.length > 0 && <ClientFilter filter={ filterState } setValue={ setValue }/>}
+                {saveClients.length == 0 && <ClientError text={"Usted no cuenta con clientes actualmente, crea un nuevo cliente para continuar"} cls={'secondary'} />}
                 <article className="clients-list">
                     { filterState.length > 0 && <ClientHeader />}
                     { filterState.map((client)=>(
                         <ClientsList  key={ client._id } client={ client } />
                     )) }
                 </article>
-                {error && <ClientError text={"Ha ocurrido un "}/>}
+                {error && <ClientError text={"Ha ocurrido un error inesperado al cargar tus clientes"}/>}
             </Container>
         </>
     )

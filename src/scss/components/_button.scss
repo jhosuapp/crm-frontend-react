@@ -37,6 +37,12 @@
     &--secondary{
         background-color: transparent;
     }
+    &--danger{
+        background-color: fun.color('danger') !important;
+    }
+    &--success{
+        background-color: fun.color('success') !important;
+    }
     &:hover{
         background: transparent;
         color: fun.color('white');
