@@ -1,0 +1,80 @@
+@use '../base/functions'  as fun;
+
+.transition{
+    position: fixed;
+    left: -10vh;
+    min-width: 120vw;
+    z-index: 99;
+    height: 0;
+    transition: .4s ease all;
+    display: flex;
+    justify-content: center;
+    &.animate{
+        bottom: 0;
+        height: 117.5vh;
+        animation: transition-pages ease .4s 1 forwards;
+        animation-delay: .5s;
+        div{
+            &:last-child{
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+    }
+    &.animate-top{
+        bottom: unset;
+        top: 0;
+        animation: hidden-transition .4s ease forwards 1;
+        animation-delay: .1s;
+        div{
+            top: 0;
+            bottom: unset;
+            border-bottom-left-radius: 3500px 313px;
+            border-bottom-right-radius: 3500px 313px;
+            &:last-child{
+                border-bottom-left-radius: 3500px 313px;
+                border-bottom-right-radius: 3500px 313px;
+                height: 90%;
+            }
+        }
+    }
+    div{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #17f1d1;
+        bottom: 0;
+        left: 0;
+        border-top-left-radius: 3500px 313px;
+        border-top-right-radius: 3500px 313px;
+        transition: .5s ease all;
+        &:nth-child(2){
+            background-color: #a374ff;
+            height: 95%;
+        }
+        &:last-child{
+            background-color: #ffd074;
+            height: 90%;
+            transition: .75s ease all;
+        }
+    }
+}
+
+@keyframes transition-pages{
+    from{
+        bottom: unset;
+        top: 0;
+    }
+    to{
+        top: 0;
+    }
+}
+
+@keyframes hidden-transition{
+    from{
+        height: 110vh;
+    }
+    to{
+        height: 0;
+    }
+}

@@ -54,7 +54,7 @@ const Clients = ()=>{
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
                 {saveClients.length > 0 && <ClientFilter filter={ filterState } setValue={ setValue }/>}
-                {saveClients.length == 0 && <ClientError text={"Usted no cuenta con clientes actualmente, crea un nuevo cliente para continuar"} cls={'secondary'} />}
+                {saveClients.length == 0 && !error && <ClientError text={"Usted no cuenta con clientes actualmente, crea un nuevo cliente para continuar"} cls={'secondary'} />}
                 <article className="clients-list">
                     { filterState.length > 0 && <ClientHeader />}
                     { filterState.map((client)=>(

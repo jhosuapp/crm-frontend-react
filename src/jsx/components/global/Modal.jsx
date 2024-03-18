@@ -9,7 +9,7 @@ import iconSuccess from '../../../assets/svg/icon-success.svg';
 
 const Modal = ({ cls, icon, message, link })=>{
 
-    const  { setGlobalModal } = useContext(GlobalContext);
+    const  { setGlobalModal, handleClick } = useContext(GlobalContext);
     
     return(
         <section className={`modal ${cls}`}>
@@ -19,7 +19,7 @@ const Modal = ({ cls, icon, message, link })=>{
                     <img src={icon ? iconError : iconSuccess} alt="icon" />
                 </picture>
                 <p>{ message }</p>
-                <Link to={ link } className="btn" onClick={()=>{ setGlobalModal(false) }}>continuar</Link>
+                <Link to={ link } className="btn" onClick={()=>{ setGlobalModal(false), handleClick() }}>continuar</Link>
             </article>
         </section>
     )

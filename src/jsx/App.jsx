@@ -1,5 +1,6 @@
 //Layout
 import { Header } from "./components/layout/Header.jsx";
+import { Transition } from './components/layout/Transition.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routing } from "./routes/Routes.jsx";
 //Context
@@ -11,6 +12,7 @@ function App() {
     <GlobalProvider>
         <Router>
           <>
+            <Transition />
             <Header />
             <main>
               <Routing />
