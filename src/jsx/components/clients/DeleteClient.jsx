@@ -11,7 +11,7 @@ import { baseAxios } from '../../config/Axios';
 
 const DeleteClient = ( { id_client } )=>{
     //Global context
-    const { globalModal, setGlobalModal, globalError, setGlobalError, globalModalConfirm, setGlobalModalConfirm } = useContext(GlobalContext);
+    const { globalModal, setGlobalModal, globalError, setGlobalError, globalModalConfirm, setGlobalModalConfirm, setGlobalDelete } = useContext(GlobalContext);
     //Request
     const request = async () =>{
         const response = await baseAxios.delete(`/clientes/${id_client}`);
@@ -22,7 +22,7 @@ const DeleteClient = ( { id_client } )=>{
         request().then((res)=>{
             const { data:{ code } } = res;
             //Validate success register
-            code == 11000 ? setGlobalError(true) : setGlobalError(false);
+            code == 11000 ? setGlobalError(true) : ( setGlobalError(false), setGlobalDelete(id_client) );
             //Enable modal
             setGlobalModal(true);
         }).catch(err=>{

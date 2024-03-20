@@ -9,6 +9,7 @@ const GlobalProvider = ({ children })=>{
     const [ globalModal, setGlobalModal ] = useState(false);
     const [ globalModalConfirm, setGlobalModalConfirm ] = useState(false);
     const [ globalTransition, setGlobalTransition ] = useState(false);
+    const [ globalDelete, setGlobalDelete ] = useState('');
 
     //Show && hidde transition
     const handleClick = ()=>{
@@ -26,7 +27,16 @@ const GlobalProvider = ({ children })=>{
 
     return (
         <GlobalContext.Provider value={ { 
-            globalError, setGlobalError, globalModal, setGlobalModal, globalModalConfirm, setGlobalModalConfirm, globalTransition, handleClick
+            globalError, 
+            setGlobalError, 
+            globalModal, 
+            setGlobalModal, 
+            globalModalConfirm, 
+            setGlobalModalConfirm, 
+            globalTransition, 
+            handleClick,
+            globalDelete, 
+            setGlobalDelete
         } }>
             { children }
         </GlobalContext.Provider>

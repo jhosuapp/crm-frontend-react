@@ -1,5 +1,5 @@
 import { baseAxios } from '../../config/Axios.jsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 //Global components
 import { RemoveAccents } from '../../components/global/RemoveAccents.jsx';
 //Component
@@ -10,9 +10,11 @@ import { ClientsList } from './ClientsList';
 import { ClientError } from './ClientError';
 import { ClientHeader } from './ClientHeader';
 import { ClientFilter } from './ClientFilter';
+import { GlobalContext } from '../../context/GlobalContext.jsx';
 //Context
 
 const Clients = ()=>{
+    const { globalDelete } = useContext(GlobalContext);
     //States
     const [ saveClients, setSaveClients ] = useState([]);
     const [ filterState, setFilterState ] = useState(saveClients);
@@ -45,7 +47,7 @@ const Clients = ()=>{
         request().catch((err)=>{
             setError(true);
         });
-    }, []);
+    }, [ globalDelete ]);
 
     return (
         <>
