@@ -9,7 +9,7 @@ import { ModalConfirm } from "../global/ModalConfirm";
 //Axios
 import { baseAxios } from '../../config/Axios';
 
-const DeleteClient = ( { id_client } )=>{
+const ClientDelete = ( { id_client } )=>{
     //Global context
     const { globalModal, setGlobalModal, globalError, setGlobalError, globalModalConfirm, setGlobalModalConfirm, setGlobalDelete } = useContext(GlobalContext);
     //Request
@@ -53,4 +53,4 @@ const DeleteClient = ( { id_client } )=>{
     );
 }
 
-export {  DeleteClient } 
+export {  ClientDelete } 

@@ -6,14 +6,14 @@ import { RemoveAccents } from '../../components/global/RemoveAccents.jsx';
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
 //Client component
-import { ClientsList } from './ClientsList';
+import { ClientList } from './ClientList';
 import { ClientError } from './ClientError';
 import { ClientHeader } from './ClientHeader';
 import { ClientFilter } from './ClientFilter';
 import { GlobalContext } from '../../context/GlobalContext.jsx';
 //Context
 
-const Clients = ()=>{
+const Client = ()=>{
     const { globalDelete } = useContext(GlobalContext);
     //States
     const [ saveClients, setSaveClients ] = useState([]);
@@ -60,7 +60,7 @@ const Clients = ()=>{
                 <article className="clients-list">
                     { filterState.length > 0 && <ClientHeader />}
                     { filterState.map((client)=>(
-                        <ClientsList  key={ client._id } client={ client } />
+                        <ClientList  key={ client._id } client={ client } />
                     )) }
                 </article>
                 {error && <ClientError text={"Ha ocurrido un error inesperado al cargar tus clientes"}/>}
@@ -69,4 +69,4 @@ const Clients = ()=>{
     )
 }
 
-export { Clients }
+export { Client }

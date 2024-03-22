@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 //Icons
 import iconEdit from '../../../assets/svg/icon-edit.svg';
 //Delete client component
-import { DeleteClient } from './DeleteClient';
+import { ClientDelete } from './ClientDelete';
 
 const ClientActions = ( { id_client } )=>{
 
@@ -11,7 +11,7 @@ const ClientActions = ( { id_client } )=>{
             <Link to={`/clientes/editar/${id_client}`} className="item">
                 <img src={ iconEdit } alt="icon edit" />
             </Link>
-            <DeleteClient id_client={ id_client } />
+            <ClientDelete id_client={ id_client } />
         </>
     );
 }

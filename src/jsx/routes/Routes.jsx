@@ -1,5 +1,5 @@
 //Clients
-import { Clients } from '../components/clients/Clients.jsx';
+import { Client } from '../components/clients/Clients.jsx';
 import { ClientCreate } from '../components/clients/ClientCreate.jsx';
 import { ClientEdit } from '../components/clients/ClientEdit.jsx';
 //Products
@@ -15,7 +15,7 @@ const Routing = ()=>{
     return( 
         <Routes>
             {/* Clients routes */}
-            <Route path="/" element={ <Clients /> } exact />
+            <Route path="/" element={ <Client /> } exact />
             <Route path="/clientes/crear" element={ <ClientCreate /> } exact />
             <Route path="/clientes/editar/:id" element={ <ClientEdit /> } exact />
 

@@ -1,6 +1,6 @@
-import { ClientActions } from './ClientsActions';
+import { ClientActions } from './ClientActions';
 
-const ClientsList = ({ client })=>{
+const ClientList = ({ client })=>{
 
     const { _id, nombre, apellido, telefono, email } = client;
 
@@ -20,4 +20,4 @@ const ClientsList = ({ client })=>{
     )
 }
 
-export { ClientsList }
+export { ClientList }
