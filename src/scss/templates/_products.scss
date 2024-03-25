@@ -1,0 +1,74 @@
+@use '../base/functions' as fun;
+
+.list-products{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    .product{
+        border: 1px solid fun.color('secondary');
+        border-radius: 5px;
+        flex: 1 200px;
+        max-width: 300px;
+        position: relative;
+        overflow: hidden;
+        picture{
+            width: 100%;
+            display: flex;
+            height: auto;
+        }
+        img{
+            width: 100%;
+        }
+        .dsc{
+            position: absolute;
+            background-color: fun.color('secondary');
+            width: 60%;
+            top: 0;
+            border-radius:  0 0 5px;
+            padding: 5px 20px;
+        }
+        p{
+            color: fun.color('white');
+            font-size: 1.5rem;
+        }
+        .actions{
+            display: flex;
+        }
+        a{
+            flex: 1 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: fun.color('white');
+            cursor: pointer;
+            transition: .5s ease opacity;
+            &:hover{
+                opacity: .7;
+            }
+            &:first-child{
+                background-color: fun.color('secondary');
+            }
+            &:last-child{
+                background-color: fun.color('danger');
+            }
+        }
+    }
+}
+
+@media(max-width: fun.breakpoints('ipad-big')){
+    .list-products{
+        gap: 20px;
+        .product{
+            height: auto;
+            flex: 1;
+            max-width: 100%;
+        }
+    } 
+}
+@media(max-width: fun.breakpoints('mobile')){
+    .list-products{
+        flex-direction: column;
+    }
+}
