@@ -10,6 +10,7 @@ const GlobalProvider = ({ children })=>{
     const [ globalModalConfirm, setGlobalModalConfirm ] = useState(false);
     const [ globalTransition, setGlobalTransition ] = useState(false);
     const [ globalDelete, setGlobalDelete ] = useState('');
+    const [ hamburger, setHamburger ] = useState(false);
 
     //Show && hidde transition
     const handleClick = ()=>{
@@ -25,6 +26,12 @@ const GlobalProvider = ({ children })=>{
         },1300);
     }
 
+    //Show and hide menu mobile
+    const enableMenu = (e)=>{
+        e.target.closest('header').classList.toggle('enable');
+        setHamburger(!hamburger);
+    }
+
     return (
         <GlobalContext.Provider value={ { 
             globalError, 
@@ -36,7 +43,10 @@ const GlobalProvider = ({ children })=>{
             globalTransition, 
             handleClick,
             globalDelete, 
-            setGlobalDelete
+            setGlobalDelete,
+            enableMenu,
+            hamburger, 
+            setHamburger
         } }>
             { children }
         </GlobalContext.Provider>

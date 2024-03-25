@@ -1,13 +1,9 @@
-import { useState } from "react"
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
+
 
 const Hamburger = ()=>{
-    //State for enabled hamburger menu
-    const [hamburger, setHamburger] = useState(false);
-    //Enable menu in mobile
-    const enableMenu = (e)=>{
-        e.target.closest('header').classList.toggle('enable');
-        setHamburger(!hamburger);
-    }
+    const { hamburger, enableMenu } = useContext(GlobalContext);
     //Return hamburger
     return (
         <div 
