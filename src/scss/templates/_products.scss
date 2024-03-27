@@ -2,13 +2,14 @@
 
 .list-products{
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 60px;
     .product{
         border: 1px solid fun.color('secondary');
         border-radius: 5px;
-        flex: 1 200px;
-        max-width: 300px;
+        flex: 1 350px;
+        max-width: 350px;
         position: relative;
         overflow: hidden;
         picture{

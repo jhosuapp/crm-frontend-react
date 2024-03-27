@@ -1,15 +1,33 @@
 //Hooks
 import { useForm } from "react-hook-form";
-
+//Components
 import { Container } from "../global/Container";
 import { Title } from "../global/Title";
+//Axios
+import { baseAxios } from '../../config/Axios';
 
 const ProductCreate = ()=>{
     //Hook form react
     const { register, handleSubmit, formState: { errors } } = useForm();
     //Request
-    const request = (body)=>{   
-        console.log(body);
+    const request = async (body)=>{   
+        //Get parameters
+        const { nombre, precio, imagen } = body;
+        const formData = new FormData();
+        //Set parameters
+        formData.append('precio', precio);
+        formData.append('nombre', nombre);
+        formData.append('imagen', imagen[0]);
+        //Conext to endpoint
+        await baseAxios.post('/productos', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data' // Asegúrate de especificar el tipo de contenido como 'multipart/form-data'
+            }
+        }).then(res=>{
+            console.log(res);
+        }).catch(error=>{
+            console.log(error);
+        });
     }
     //Request when all input are ok
     const onSubmit = data => data && request(data);
@@ -23,7 +41,7 @@ const ProductCreate = ()=>{
                 <form className='custom-form' onSubmit={ handleSubmit(onSubmit) } noValidate={true}>
                     {/* Name */}
                     <div className="block-input">
-                        <label htmlFor="nombre">Nombre</label>
+                        <label htmlFor="nombre">Nombre Producto</label>
                         <input 
                             type="text" id="nombre"
                             name="nombre" 
@@ -34,7 +52,7 @@ const ProductCreate = ()=>{
                     </div>
                     {/* Price */}
                     <div className="block-input">
-                        <label htmlFor="precio">Precio</label>
+                        <label htmlFor="precio">Precio Producto</label>
                         <input 
                             type="number" id="precio"
                             name="precio" 
@@ -49,7 +67,7 @@ const ProductCreate = ()=>{
                     </div>
                     {/* File */}
                     <div className="block-input">
-                        <label htmlFor="imagen">Imagen</label>
+                        <label htmlFor="imagen">Imagen Producto</label>
                         <input 
                             type="file" id="imagen"
                             {...register("imagen", {
