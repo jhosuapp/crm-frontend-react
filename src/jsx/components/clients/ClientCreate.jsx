@@ -46,7 +46,11 @@ const ClientCreate = ()=>{
                             type="text" id="nombre"
                             name="nombre" 
                             placeholder='Nombre'
-                            {...register("nombre", { required: 'Este campo es requerido', maxLength: { value: 30, message: 'El límite permitido de caracteres es 30' } })}
+                            {...register("nombre", { 
+                                required: 'Este campo es requerido', 
+                                maxLength: {value: 50, message: 'El límite permitido de caracteres es 30' },
+                                pattern: { value: /^[a-zA-ZáéíóúÁÉÍÓÚ]{1,50}$/i,message: "Ingrese un nombre valido" }
+                            })}
                         />
                         {errors.nombre && <p className="error--form">{errors.nombre.message}</p>}
                     </div>
@@ -56,14 +60,18 @@ const ClientCreate = ()=>{
                             type="text" id="apellido"
                             name="apellido" 
                             placeholder='Apellido'
-                            {...register("apellido", { required: 'Este campo es requerido', maxLength: {value: 50, message: 'El límite permitido de caracteres es 30' }} )}
+                            {...register("apellido", { 
+                                required: 'Este campo es requerido', 
+                                maxLength: {value: 50, message: 'El límite permitido de caracteres es 30' },
+                                pattern: { value: /^[a-zA-ZáéíóúÁÉÍÓÚ]{1,50}$/i,message: "Ingrese un nombre valido" }
+                            })}
                         />
                         {errors.apellido && <p className="error--form">{errors.apellido.message}</p>}
                     </div>
                     <div className="block-input">
                         <label htmlFor="telefono">Télefono</label>
                         <input 
-                            type="text" id="telefono"
+                            type="number" id="telefono"
                             name="telefono" 
                             placeholder='Télefono'
                             {...register("telefono", { required: 'Este campo es requerido', maxLength: {value: 12, message: 'El límite permitido de caracteres es 30' }} )}

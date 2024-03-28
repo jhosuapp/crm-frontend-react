@@ -1,14 +1,20 @@
 //Hooks
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
 //Components
 import { Container } from "../global/Container";
 import { Title } from "../global/Title";
+import { Modal } from "../global/Modal";
+//Global context
+import { GlobalContext } from "../../context/GlobalContext";
 //Axios
 import { baseAxios } from '../../config/Axios';
 
 const ProductCreate = ()=>{
     //Hook form react
     const { register, handleSubmit, formState: { errors } } = useForm();
+    //Global context
+    const { globalModal, setGlobalModal, globalError, setGlobalError } = useContext(GlobalContext);
     //Request
     const request = async (body)=>{   
         //Get parameters
@@ -24,9 +30,17 @@ const ProductCreate = ()=>{
                 'Content-Type': 'multipart/form-data' // Asegúrate de especificar el tipo de contenido como 'multipart/form-data'
             }
         }).then(res=>{
-            console.log(res);
+            const { data } = res;
+            setGlobalModal(true);
+            if(data.mensaje == "Se agrego un nuevo producto"){
+                setGlobalError(false);
+            }else{
+                setGlobalError(true);
+            }
         }).catch(error=>{
-            console.log(error);
+            //Enable modal and set error
+            setGlobalModal(true);
+            setGlobalError(true);
         });
     }
     //Request when all input are ok
@@ -90,6 +104,12 @@ const ProductCreate = ()=>{
                     </div>
                 </form>
             </Container>
+            <Modal 
+                cls={globalError ? `${globalModal && 'active'} modal--error` : `${globalModal && 'active'} modal--success`}
+                message={globalError ? 'No se ha podido crear el producto, intentalo de nuevo más adelante' : 'El producto se ha creado de manera exitosa'}
+                icon={globalError ? true : false}
+                link={'/productos'}
+            />
         </>
     )
 }
