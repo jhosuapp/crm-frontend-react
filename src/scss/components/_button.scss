@@ -39,9 +39,11 @@
     }
     &--danger{
         background-color: fun.color('danger') !important;
+        border-color: fun.color('danger');
     }
     &--success{
-        background-color: fun.color('success') !important;
+        background-color: fun.color('success');
+        border-color: fun.color('success');
     }
     &:hover{
         background: transparent;

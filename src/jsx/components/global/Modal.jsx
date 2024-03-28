@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 //Hooks react
 import { useContext } from 'react';
+import { createPortal } from 'react-dom';
 //Global context
 import { GlobalContext } from '../../context/GlobalContext';
 //Icons
@@ -11,7 +12,7 @@ const Modal = ({ cls, icon, message, link })=>{
 
     const  { setGlobalModal, handleClick } = useContext(GlobalContext);
     
-    return(
+    return createPortal(
         <section className={`modal ${cls}`}>
             <article className="modal__bg"></article>
             <article className="modal__content">
@@ -21,7 +22,8 @@ const Modal = ({ cls, icon, message, link })=>{
                 <p>{ message }</p>
                 <Link to={ link } className="btn" onClick={()=>{ setGlobalModal(false), handleClick() }}>continuar</Link>
             </article>
-        </section>
+        </section>,
+        document.getElementById('modal-content')
     )
 }
 

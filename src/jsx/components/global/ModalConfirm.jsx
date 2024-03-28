@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
 //Hooks react
 import { useContext } from 'react';
+import { createPortal } from 'react-dom';
 //Global context
 import { GlobalContext } from '../../context/GlobalContext';
 //Icons
 import iconDanger from '../../../assets/svg/icon-danger.svg';
 
+
 const ModalConfirm = ({ cls, message, link, handleEvent })=>{
 
     const  { setGlobalModalConfirm } = useContext(GlobalContext);
     
-    return(
+    return createPortal(
         <section className={`modal ${cls}`}>
             <article className="modal__bg"></article>
             <article className="modal__content">
@@ -28,7 +30,8 @@ const ModalConfirm = ({ cls, message, link, handleEvent })=>{
                     <Link className="btn btn--danger" onClick={()=>{ setGlobalModalConfirm(false) }}>cancelar</Link>
                 </div>
             </article>
-        </section>
+        </section>,
+        document.getElementById('modal-confirm')
     )
 }
 

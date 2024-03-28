@@ -3,7 +3,7 @@ import { ProductActions } from './ProductActions';
 
 const ProductList = ( { product } )=>{
     //Get parameters
-    const { nombre, precio, imagen } = product;
+    const { nombre, precio, imagen, _id } = product;
 
     return (
         <article className="product">
@@ -14,7 +14,7 @@ const ProductList = ( { product } )=>{
                 <p>Curso { nombre }</p>
                 <p>${ precio }</p>
             </div>
-            <ProductActions />
+            <ProductActions id_product={ _id } />
         </article>
     );
 }
