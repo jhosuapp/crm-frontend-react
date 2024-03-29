@@ -33,7 +33,7 @@ const ProductDelete = ({ id_product })=>{
             //Enable modal
             setGlobalModal(true);
             setError(true);
-        })
+        });
     }
 
     return (

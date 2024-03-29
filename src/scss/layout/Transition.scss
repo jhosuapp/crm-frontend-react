@@ -9,6 +9,7 @@
     transition: .4s ease all;
     display: flex;
     justify-content: center;
+    top: -12vh;
     &.animate{
         bottom: 0;
         height: 117.5vh;
