@@ -5,9 +5,9 @@ import { RemoveAccents } from '../../components/global/RemoveAccents.jsx';
 //Component
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
+import { ErrorMessage } from  "../global/ErrorMessage";
 //Client component
 import { ClientList } from './ClientList';
-import { ClientError } from './ClientError';
 import { ClientHeader } from './ClientHeader';
 import { ClientFilter } from './ClientFilter';
 import { GlobalContext } from '../../context/GlobalContext.jsx';
@@ -56,14 +56,14 @@ const Client = ()=>{
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
                 {saveClients.length > 0 && <ClientFilter filter={ filterState } setValue={ setValue }/>}
-                {saveClients.length == 0 && !error && <ClientError text={"Usted no cuenta con clientes actualmente, crea un nuevo cliente para continuar"} cls={'secondary'} />}
+                {saveClients.length == 0 && !error && <ErrorMessage text={"Usted no cuenta con clientes actualmente, crea un nuevo cliente para continuar"} cls={'secondary'} />}
                 <article className="clients-list">
                     { filterState.length > 0 && <ClientHeader />}
                     { filterState.map((client)=>(
                         <ClientList  key={ client._id } client={ client } />
                     )) }
                 </article>
-                {error && <ClientError text={"Ha ocurrido un error inesperado al cargar tus clientes"}/>}
+                {error && <ErrorMessage text={"Ha ocurrido un error inesperado al cargar tus clientes"}/>}
             </Container>
         </>
     )

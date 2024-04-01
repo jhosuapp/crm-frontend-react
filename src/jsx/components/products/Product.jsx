@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 //Global components
 import { Container } from "../global/Container";
 import { Title } from "../global/Title";
+import { ErrorMessage } from  "../global/ErrorMessage";
 //Components product
 import { ProductList } from "./ProductList";
 //Context
@@ -12,8 +13,9 @@ import { baseAxios } from "../../config/Axios";
 
 const Product = ()=>{
     //Global context && states
-    const { globalDelete, setGlobalDelete, globalError, setGlobalError } = useContext(GlobalContext);
+    const { globalDelete, setGlobalDelete, } = useContext(GlobalContext);
     const [ stateProducts, setStateProducts ] = useState([]);
+    const [ error, setError ] = useState(false);
     //Conex to endpoint
     const products = async ()=>{
         const request = await baseAxios.get('/productos');
@@ -26,12 +28,12 @@ const Product = ()=>{
             console.log(data);
             if(data){
                 setStateProducts(data);
-                setGlobalError(true);
+                setError(false);
             }else{
-                setGlobalError(false);
+                setError(true);
             }
         }).catch(err=>{
-            setGlobalError(false);
+            setError(true);
         });
     }, [ globalDelete ]);
 
@@ -41,13 +43,15 @@ const Product = ()=>{
                 <Title text_title={'Mis productos'} btn_text="Crear producto" btn_link={'/productos/crear'} />
             </Container>
             <Container cls={'container container--bg custom-fonts'}>
-                <section className="list-products">
+                { stateProducts.length == 0 && !error && <ErrorMessage text={"Usted no cuenta con productos actualmente, crea un nuevo producto para continuar"} cls={'secondary'} />}
+                <article className="list-products">
                     { 
                         stateProducts.map((product)=>(
                             <ProductList key={product._id} product={ product } ></ProductList>
-                        ))
-                    }
-                </section>
+                            ))
+                        }
+                </article>
+                { error && <ErrorMessage text={'Ha ocurrido un error inesperado al cargar los productos'}  /> }
             </Container>
         </>
     )
