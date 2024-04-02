@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Container } from "../global/Container";
 import { Title } from "../global/Title";
 import { ErrorMessage } from  "../global/ErrorMessage";
+import { Modal } from '../global/Modal';
 //Components product
 import { ProductList } from "./ProductList";
 //Context
@@ -13,7 +14,7 @@ import { baseAxios } from "../../config/Axios";
 
 const Product = ()=>{
     //Global context && states
-    const { globalDelete, setGlobalDelete, } = useContext(GlobalContext);
+    const { globalDelete, globalModal, globalError } = useContext(GlobalContext);
     const [ stateProducts, setStateProducts ] = useState([]);
     const [ error, setError ] = useState(false);
     //Conex to endpoint
@@ -23,18 +24,20 @@ const Product = ()=>{
     }
     //Execute conexion to endpoint
     useEffect(()=>{
-        products().then(res=>{
-            const { data } = res;
-            console.log(data);
-            if(data){
-                setStateProducts(data);
-                setError(false);
-            }else{
+        setTimeout(()=>{
+            products().then(res=>{
+                const { data } = res;
+                //Validate data
+                if(data){
+                    setStateProducts(data);
+                    setError(false);
+                }else{
+                    setError(true);
+                }
+            }).catch(err=>{
                 setError(true);
-            }
-        }).catch(err=>{
-            setError(true);
-        });
+            });
+        }, 500);
     }, [ globalDelete ]);
 
     return (
@@ -53,6 +56,12 @@ const Product = ()=>{
                 </article>
                 { error && <ErrorMessage text={'Ha ocurrido un error inesperado al cargar los productos'}  /> }
             </Container>
+            <Modal 
+                cls={globalError ? `${globalModal && 'active'} modal--error` : `${globalModal && 'active'} modal--success`}
+                message={globalError ? 'No se ha podido crear el producto, intentalo de nuevo más adelante' : 'El producto se ha eliminado de manera exitosa'}
+                icon={globalError ? true : false}
+                link={'/productos'}
+            />
         </>
     )
 }

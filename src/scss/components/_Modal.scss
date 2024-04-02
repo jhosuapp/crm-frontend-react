@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     top: -110%;
-    transition: 1s ease top;
+    transition: .5s ease top;
     &.active{
         top: 0;
     }
