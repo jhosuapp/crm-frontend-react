@@ -6,6 +6,7 @@ import { RemoveAccents } from '../../components/global/RemoveAccents.jsx';
 import { Container } from '../global/Container';
 import { Title } from '../global/Title';
 import { ErrorMessage } from  "../global/ErrorMessage";
+import { Modal } from '../global/Modal';
 //Client component
 import { ClientList } from './ClientList';
 import { ClientHeader } from './ClientHeader';
@@ -14,7 +15,7 @@ import { GlobalContext } from '../../context/GlobalContext.jsx';
 //Context
 
 const Client = ()=>{
-    const { globalDelete } = useContext(GlobalContext);
+    const { globalDelete, globalModal, globalError } = useContext(GlobalContext);
     //States
     const [ saveClients, setSaveClients ] = useState([]);
     const [ filterState, setFilterState ] = useState(saveClients);
@@ -44,9 +45,11 @@ const Client = ()=>{
     },[ value, saveClients ]);
     //Only when endpoint has error
     useEffect(()=>{
-        request().catch((err)=>{
-            setError(true);
-        });
+        setTimeout(()=>{
+            request().catch((err)=>{
+                setError(true);
+            });
+        },500);
     }, [ globalDelete ]);
 
     return (
@@ -65,6 +68,12 @@ const Client = ()=>{
                 </article>
                 {error && <ErrorMessage text={"Ha ocurrido un error inesperado al cargar tus clientes"}/>}
             </Container>
+            <Modal 
+                cls={`${globalError ? 'modal--error' : 'modal--success'} ${globalModal && 'active'}`} 
+                icon={globalError} 
+                message={`${globalError ? 'El cliente no ha podido ser eliminado, intetanlo nuevamente' : 'Cliente eliminado de manera exitosa'}`} 
+                link={'/'}
+            />
         </>
     )
 }
