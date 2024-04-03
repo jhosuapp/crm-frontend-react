@@ -1,6 +1,6 @@
 //Hooks
 import { useForm } from "react-hook-form";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 //Components
 import { Container } from "../global/Container";
@@ -14,8 +14,11 @@ import { baseAxios } from '../../config/Axios';
 const ProductEdit = ()=>{
     //Id url
     const { id } = useParams();
+    //States
+    const [ image, setImage ] = useState('');
+    const [ isFileModified, setIsFileModified ] = useState(false);
     //Hook form react
-    const { register, handleSubmit, formState: { errors, touched, isValid  }, setValue } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     //Global context
     const { globalModal, setGlobalModal, globalError, setGlobalError } = useContext(GlobalContext);
     //Set values from endpoint
@@ -28,6 +31,7 @@ const ProductEdit = ()=>{
         requestSetData().then((res)=>{
             const { data:{ imagen, nombre, precio } } = res;
             const valuesToSet = { imagen, nombre, precio };
+            setImage(`http://localhost:5000/${imagen}`);
             //Set values on a inputs
             Object.keys(valuesToSet).forEach(key => {
               setValue(key, valuesToSet[key]);
@@ -64,9 +68,16 @@ const ProductEdit = ()=>{
             setGlobalError(true);
         });
     }
+    //Onchange file
+    const handleOnChange = (event)=>{
+        const file = event.target.files[0];
+        //Modify image
+        setIsFileModified(true);
+        //Update preview image
+        setImage(URL.createObjectURL(file));
+    }
     //Request when all input are ok
     const onSubmit = data => data && request(data);
-
     return (
         <>
             <Container cls={'container container--bg custom-fonts'}>  
@@ -105,19 +116,33 @@ const ProductEdit = ()=>{
                         <label htmlFor="imagen">Imagen Producto</label>
                         <input 
                             type="file" id="imagen"
+                            onChangeCapture={ handleOnChange }
                             {...register("imagen", {
-                                required: "Este campo es requerido",
+                                required: isFileModified,
                                 validate: {
-                                  fileSize: (value) => value[0]?.size <= 1048576 || "El archivo debe ser menor o igual a 1MB", // 1MB en bytes
-                                  fileExtension: (value) => {
-                                        const allowedExtensions = ["jpg", "jpeg", "png"];
-                                        const extension = value[0]?.name.split('.').pop().toLowerCase();
-                                        return allowedExtensions.includes(extension) || "Formato de archivo no permitido";
-                                  }
+                                    fileSize: (value) => {
+                                        if(isFileModified){
+                                            return value[0]?.size <= 1048576 || "El archivo debe ser menor o igual a 1MB";
+                                        }
+                                    },// 1MB en bytes
+                                    fileExtension: (value) => {
+                                        if(isFileModified){
+                                          const allowedExtensions = ["jpg", "jpeg", "png"];
+                                          const extension = value[0]?.name.split('.').pop().toLowerCase();
+                                            return allowedExtensions.includes(extension) || "Formato de archivo no permitido";
+                                        }
+                                    }
                                 }
                             })}
                         />
                         {errors.imagen && <p className="error--form">{errors.imagen.message}</p>}
+                    </div>
+                    {/* Preview image */}
+                    <div className="block-input block-image">
+                        <label>Imagen actual</label>
+                        <div className="block">
+                            <img className="image-product" src={image} alt="imagen producto" />
+                        </div>
                     </div>
                     {/* Actions */}
                     <div className="block-actions">

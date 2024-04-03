@@ -23,6 +23,22 @@
     .block-input{
         margin-bottom: 20px;
     }
+    .block-image{
+        .block{
+            border: 2px solid fun.color('secondary');
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        img{
+            width: 100%;
+            max-width: 200px;
+            max-height: 50px;
+            object-fit: contain;
+            margin: auto;
+        }
+    }
     .block-actions{
         display: flex;
         justify-content: center;
