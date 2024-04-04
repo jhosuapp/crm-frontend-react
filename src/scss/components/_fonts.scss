@@ -7,6 +7,11 @@
         text-align: center;
         color: fun.color('secondary');
     }
+    h3{
+        font-size: 2rem; 
+        text-transform: uppercase;
+        color: fun.color('secondary');
+    }
     p{
         font-size: 1.7rem
     }
@@ -16,6 +21,9 @@
     .custom-fonts{
         h1{ 
             font-size: 2rem;
+        }
+        h3{
+            font-size: 1.8rem;
         }
         p{
             font-size: 1.6rem;

@@ -1,0 +1,38 @@
+@use '../base/functions' as fun;
+
+.order-client{
+    display: flex;
+    gap: 15px;
+    margin: 15px 0 30px;
+    background-color: rgb(228, 228, 228);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    .item{
+        display: flex;
+        gap: 10px;
+        border-right: 2px solid fun.color('secondary');
+        padding-right: 15px;
+        &:last-child{
+            padding: 0;
+            border: none;
+        }
+        p{
+            &:first-child{
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+@media(max-width: fun.breakpoints('ipad-small')){
+    .order-client{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .item{
+            border-right: none;
+        }
+    }
+}
