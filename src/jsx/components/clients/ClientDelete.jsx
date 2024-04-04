@@ -33,6 +33,7 @@ const ClientDelete = ( { id_client } )=>{
     return(
         <>
             <button className="item" onClick={ ()=>{ setGlobalModalConfirm(true) } }>
+                <p>Eliminar</p>
                 <img src={ iconDelete } alt="icon delete" />
             </button>
             {/* Modal */}

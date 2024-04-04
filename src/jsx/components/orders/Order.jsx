@@ -1,7 +1,7 @@
-const Orders = ()=>{
+const Order = ()=>{
     return (
         <h2>Pedidos</h2>
     )
 }
 
-export { Orders }
+export { Order }

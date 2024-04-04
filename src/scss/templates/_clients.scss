@@ -7,41 +7,57 @@
         display: flex;
         justify-content: space-between;
         background-color: rgb(231, 231, 231);
-        padding: 10px;
         border-radius: 10px;
         p{
             font-size: 1.6rem;
         }
         .item{
             flex: 1;
-            &:last-child,
+            display: flex;
+            align-items: center;
             &:nth-child(4),
             &:nth-child(5){
-                display: flex;
-                justify-content: center;
                 max-width: 100px;
+            }
+            &:last-child{
+                max-width: 200px;
+                text-align: center;
+                justify-content: center;
             }
         }
     }
     &__header{
+        padding: 15px;
         p{
             font-weight: 500;
         }
     }
     &__body{
+        padding: 10px;
         &:nth-child(even){
             background-color: #fff;
         }
         &:nth-child(odd){
             background-color: rgb(243, 243, 243);
         }
+        .btn{
+            max-width: 200px;
+            gap: 10px;
+        }
+        p{
+            &:first-child{
+                display: none;
+            }
+        }
         a, button{
-            outline: inherit;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            &:hover{
-                opacity: .7;
+            &:not(.btn){
+                outline: inherit;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                &:hover{
+                    opacity: .7;
+                }
             }
             img{
                 width: 18px;
@@ -85,9 +101,35 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                gap: 10px;
+                p{
+                    &:first-child{
+                        display: flex;
+                        font-weight: 500;
+                    }
+                }
                 &:nth-child(4),
                 &:nth-child(5){
                     max-width: 100%;
+                }
+                &:nth-child(4){
+                    p{
+                        color: fun.color('primary');
+                    }
+                }
+                &:nth-child(5){
+                    p{
+                        color: fun.color('danger');
+                    }
+                }
+                &:last-child{
+                    justify-content: center;
+                    max-width: 100%;
+                }
+                &.btn{
+                    margin: 20px auto 10px;
+                    max-width: 100%;
+                    min-height: 35px;
                 }
             }
         }

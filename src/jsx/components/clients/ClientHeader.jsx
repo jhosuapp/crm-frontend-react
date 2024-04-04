@@ -16,6 +16,9 @@ const ClientHeader = ()=>{
             <div className="item">
                 <p>eliminar</p>
             </div>
+            <div className="item">
+                <p>Asignar pedido</p>
+            </div>
         </div>
     );
 }
