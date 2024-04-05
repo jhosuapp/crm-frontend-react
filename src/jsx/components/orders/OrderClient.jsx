@@ -22,7 +22,6 @@ const OrderClient = ()=>{
         });
     },[]);
 
-
     return (
         <>
             <h3>Datos de cliente</h3>

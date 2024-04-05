@@ -36,6 +36,9 @@
         }
         &:first-child{
             border-right: 2px solid fun.color('secondary');
+        }
+        &:first-child,
+        &:last-child{
             .item{
                 display: flex;
                 justify-content: space-between;
@@ -57,6 +60,21 @@
                 }
                 .name{
                     font-weight: 500;
+                }
+            }
+        }
+        &:first-child{
+            .item{
+                &.inactive{
+                    display: none;
+                }
+            }
+        }
+        &:last-child{
+            .item{
+                display: none;
+                &.active{
+                    display: flex;
                 }
             }
         }
@@ -87,7 +105,8 @@
     }
     .order-product{
         article{
-            &:first-child{
+            &:first-child,
+            &:last-child{
                 .item{
                     flex-direction: column;
                     gap: 30px;
