@@ -106,6 +106,12 @@
     }
 }
 
+.order-make{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media(max-width: fun.breakpoints('ipad-big')){
     .order-product{
         flex-direction: column;

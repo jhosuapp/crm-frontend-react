@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { baseAxios } from "../../config/Axios";
 import { ErrorMessage } from "../global/ErrorMessage";
+//Components
+import { OrderProductButtonAmount } from './OrderProductButtonAmount';
 
-const OrderProduct = ()=>{
+const OrderProduct = ({ setTotalPrice, totalPrice })=>{
 
     const [ products, setProducts ] = useState([]);
-    const [ numberProduct, setNumberProduct ] = useState(1);
 
     //Request products
     const request = async ()=>{
@@ -31,18 +32,11 @@ const OrderProduct = ()=>{
         const indexProduct = copyProducts.findIndex(product => product._id === e.target.dataset.product);
         copyProducts[indexProduct].selected = state;
         setProducts(copyProducts);
-    }
-    //Sum products
-    const handleClickSum = ()=>{
-        if(numberProduct < 10){
-            setNumberProduct(numberProduct + 1);
-        }
-    }
-    //Rest products
-    const handleClickRest = ()=>{
-        if(numberProduct > 1){
-            setNumberProduct(numberProduct - 1);
-        }
+        //Set Price
+        let sum;
+        const price = e.target.dataset.price;
+        state ? (sum = parseFloat(price) + parseFloat(totalPrice)) : (sum = parseFloat(totalPrice) - parseFloat(price));            
+        setTotalPrice(sum);
     }
 
     return (
@@ -62,7 +56,14 @@ const OrderProduct = ()=>{
                                         <p className="price">${ product.precio }</p>
                                     </div>
                                 </div>
-                                <button className="btn" data-product={product._id} onClick={ (e)=>{ handleClickProduct(e, true) } }>Añadir producto</button>
+                                <button 
+                                    className="btn" 
+                                    data-product={ product._id } 
+                                    data-price={ product.precio } 
+                                    onClick={ (e)=>{ handleClickProduct(e, true) } }
+                                >
+                                    Añadir producto
+                                </button>
                             </div>
                         ))
                     }
@@ -81,16 +82,15 @@ const OrderProduct = ()=>{
                                         <p className="price">${ product.precio }</p>
                                     </div>
                                 </div>
-                                <div className="block-number-product">
-                                    <button onClick={ handleClickRest }>
-                                        -
-                                    </button>
-                                    <p>{ numberProduct }</p>
-                                    <button onClick={ handleClickSum }>
-                                        +
-                                    </button>
-                                </div>
-                                <button className="btn btn--danger" data-product={product._id} onClick={ (e)=>{ handleClickProduct(e, false) } }>Remover producto</button>
+                                <OrderProductButtonAmount product={ product } setTotalPrice={ setTotalPrice } totalPrice={ totalPrice } />
+                                <button 
+                                    className="btn btn--danger" 
+                                    data-product={ product._id } 
+                                    data-price={ product.precio } 
+                                    onClick={ (e)=>{ handleClickProduct(e, false) } }
+                                >
+                                    Remover producto
+                                </button>
                             </div>
                         ))
                     }

@@ -1,11 +1,17 @@
+//Hooks react
+import { useState } from "react";
 //Global components
 import { Container } from "../global/Container";
 import { Title } from "../global/Title";
 //Components order
 import { OrderClient } from './OrderClient';
 import { OrderProduct } from './OrderProduct';
+import { OrderMake } from './OrderMake';
 
 const OrderCreate = ()=>{
+    //States
+    const [ totalPrice, setTotalPrice ] = useState(0);
+
     return (
         <>
             <Container cls={'container container--bg custom-fonts'}>  
@@ -15,7 +21,10 @@ const OrderCreate = ()=>{
                 <OrderClient></OrderClient>
             </Container>
             <Container cls={'container container--bg custom-fonts order-product custom-input'}>
-                <OrderProduct></OrderProduct>
+                <OrderProduct totalPrice={ totalPrice } setTotalPrice={ setTotalPrice }></OrderProduct>
+            </Container>
+            <Container cls={'container container--bg custom-fonts order-make custom-input'}>
+                <OrderMake totalPrice={ totalPrice }></OrderMake>
             </Container>
         </>
     );
