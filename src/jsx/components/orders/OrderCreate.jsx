@@ -11,6 +11,7 @@ import { OrderMake } from './OrderMake';
 const OrderCreate = ()=>{
     //States
     const [ totalPrice, setTotalPrice ] = useState(0);
+    const [ products, setProducts ] = useState([]);
 
     return (
         <>
@@ -21,10 +22,15 @@ const OrderCreate = ()=>{
                 <OrderClient></OrderClient>
             </Container>
             <Container cls={'container container--bg custom-fonts order-product custom-input'}>
-                <OrderProduct totalPrice={ totalPrice } setTotalPrice={ setTotalPrice }></OrderProduct>
+                <OrderProduct 
+                    totalPrice={ totalPrice } 
+                    setTotalPrice={ setTotalPrice } 
+                    products={ products } 
+                    setProducts={ setProducts }
+                />                    
             </Container>
             <Container cls={'container container--bg custom-fonts order-make custom-input'}>
-                <OrderMake totalPrice={ totalPrice }></OrderMake>
+                <OrderMake totalPrice={ totalPrice } products={ products }></OrderMake>
             </Container>
         </>
     );

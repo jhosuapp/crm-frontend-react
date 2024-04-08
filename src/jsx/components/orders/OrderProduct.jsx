@@ -4,9 +4,9 @@ import { ErrorMessage } from "../global/ErrorMessage";
 //Components
 import { OrderProductButtonAmount } from './OrderProductButtonAmount';
 
-const OrderProduct = ({ setTotalPrice, totalPrice })=>{
+const OrderProduct = ({ setTotalPrice, totalPrice, products, setProducts })=>{
 
-    const [ products, setProducts ] = useState([]);
+
 
     //Request products
     const request = async ()=>{
@@ -82,7 +82,13 @@ const OrderProduct = ({ setTotalPrice, totalPrice })=>{
                                         <p className="price">${ product.precio }</p>
                                     </div>
                                 </div>
-                                <OrderProductButtonAmount product={ product } setTotalPrice={ setTotalPrice } totalPrice={ totalPrice } />
+                                <OrderProductButtonAmount 
+                                    product={ product } 
+                                    setTotalPrice={ setTotalPrice } 
+                                    totalPrice={ totalPrice } 
+                                    products={ products } 
+                                    setProducts={ setProducts } 
+                                />
                                 <button 
                                     className="btn btn--danger" 
                                     data-product={ product._id } 
