@@ -1,9 +1,21 @@
+//React hooks
 import { useParams } from "react-router-dom"
+import { useContext, useState } from "react";
+//Axios
 import { baseAxios } from "../../config/Axios"
+//Components
+import { Modal } from "../global/Modal";
+//Global context 
+import { GlobalContext } from '../../context/GlobalContext';
 
 const OrderMake = ( { totalPrice, products } )=>{
-    const { id } = useParams();
 
+    //Global context
+    const { globalModal, setGlobalModal, globalError, setGlobalError } = useContext(GlobalContext);
+    //Id url
+    const { id } = useParams();
+    //States
+    const [copy, setCopy] = useState('');
     //Request
     const request = async(body)=>{
         const response = await baseAxios.post(`/pedidos/nuevo/${ id }`, body)
@@ -24,17 +36,35 @@ const OrderMake = ( { totalPrice, products } )=>{
         return filterProducts;
     }
 
-    const onClick = ()=>{
-        console.log(productsSelected());
-        // const data = {
-        //     "cliente": id,
-        //     "pedido": [
-        //         {"producto": "660db336d981cad1eb6a7dd7", "cantidad": 2 }
-        //     ],
-        //     "total": totalPrice
-        // }
+    const errorOrder = (copy)=>{
+        setCopy(copy);
+        setGlobalModal(true);
+        setGlobalError(true);
+    }
 
-        // request(data);
+    //Onclick request
+    const onClick = ()=>{
+        const products = productsSelected();
+        const data = {
+            "cliente": id,
+            "pedido": products,
+            "total": totalPrice
+        }
+        //Validate if client select a product
+        if(products.length > 0){
+            console.log('entra');
+            request(data)
+                .then(res=>{
+                    console.log(res.status);
+                    res.status == 200 ? setGlobalError(false) : setGlobalError(true);
+                    setCopy('Ha ocurrido un error inesperado, intentalo nuevamente');
+                    setGlobalModal(true);
+                }).catch(err=>{
+                    errorOrder('Ha ocurrido un error inesperado, intentalo nuevamente');
+                });
+        }else{
+            errorOrder('Selecciona minímo un producto');
+        }
     }
 
     return (
@@ -45,6 +75,13 @@ const OrderMake = ( { totalPrice, products } )=>{
             <article>
                 <button onClick={ onClick }  className="btn">Realizar pedido</button>
             </article>
+            {/* Modal */}
+            <Modal 
+                cls={`${globalError ? 'modal--error' : 'modal--success'} ${globalModal && 'active'}`} 
+                icon={globalError} 
+                message={`${globalError ? copy : 'Orden creada exitosamente'}`} 
+                link={copy == 'Selecciona minímo un producto' ? '' : '/pedidos'} 
+            />
         </>
     )
 }
