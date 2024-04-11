@@ -26,7 +26,8 @@ const OrderMake = ( { totalPrice, products } )=>{
     const productsSelected = ()=>{
         const productsCopy = [...products];
         productsCopy.forEach((data)=>{ 
-            !data.amount && (data.amount = 1); 
+            !data.cantidad && (data.cantidad = 1); 
+            data.producto = data._id;
         });
         //Filter products selected
         const filterProducts = productsCopy.filter(product => (
@@ -50,7 +51,7 @@ const OrderMake = ( { totalPrice, products } )=>{
             "pedido": products,
             "total": totalPrice
         }
-        //Validate if client select a product
+        // Validate if client select a product
         if(products.length > 0){
             console.log('entra');
             request(data)

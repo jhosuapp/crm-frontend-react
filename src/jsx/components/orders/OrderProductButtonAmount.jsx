@@ -11,7 +11,7 @@ const OrderProductButtonAmount = ( { product, setTotalPrice, totalPrice, product
         const idProduct = productsCopy.findIndex(prod => (
             prod._id == e.target.dataset.product
         ));
-        productsCopy[idProduct].amount = operation;
+        productsCopy[idProduct].cantidad = operation;
         setProducts(productsCopy);
     }
 
