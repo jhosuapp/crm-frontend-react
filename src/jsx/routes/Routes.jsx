@@ -9,6 +9,8 @@ import { ProductEdit } from '../components/products/ProductEdit.jsx';
 //Orders
 import { Order } from '../components/orders/Order.jsx';
 import { OrderCreate } from '../components/orders/OrderCreate.jsx';
+//Auth
+import { Login } from '../components/auth/Login.jsx';
 //Routing react dom
 import { Routes, Route } from 'react-router-dom';
 
@@ -28,6 +30,8 @@ const Routing = ()=>{
             {/* Clients products */}
             <Route path="/pedidos" element={ <Order /> } exact />
             <Route path="/pedidos/asignar/:id" element={ <OrderCreate /> } exact />
+            {/* Login */}
+            <Route path={"/iniciar-sesion"} element={ <Login /> } exact></Route>
         </Routes>
     );
 }
