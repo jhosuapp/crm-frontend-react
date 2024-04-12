@@ -1,4 +1,4 @@
-import logo from '../../../assets/svg/logo.svg';
+import logo from '../../../assets/svg/icon-react.svg';
 
 //Components layout
 import { Hamburger } from './HeaderHamburguer';
