@@ -1,5 +1,5 @@
 //Hook react
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 //Global context
@@ -8,21 +8,23 @@ import { GlobalContext } from "../../context/GlobalContext";
 
 const HeaderNaV = ()=>{
     //Global context
-    const { handleClick, enableMenu, auth, token, setAuth, VerifyToken } = useContext(GlobalContext);
+    const { handleClick, enableMenu, auth, token, setAuth, VerifyToken, Logout } = useContext(GlobalContext);
+    const [ nav, setNav ] = useState(false);
     const navigate = useNavigate();
     //Verify token
     useEffect(()=>{
         VerifyToken()
         .then((res)=>{
             setAuth(res);
+            setNav(true)
         }).catch(err=>{
+            setNav(false);
             navigate('/iniciar-sesion');
         });
     }, [token]);
     //Get state auth user
-    const { auth:authUser } = auth;
 
-    if(authUser){
+    if(nav){
         return(
             <nav>
                 <ul>
@@ -36,7 +38,7 @@ const HeaderNaV = ()=>{
                         <Link to={"/pedidos"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Pedidos</Link>
                     </li>
                     <li>
-                        <a className='btn btn--tertiary'>Cerrar sesión</a>
+                        <a className='btn btn--tertiary' onClick={ (e)=>{ Logout(); handleClick(); enableMenu(e); } }>Cerrar sesión</a>
                     </li>
                 </ul>
             </nav>
@@ -50,7 +52,7 @@ const HeaderNaV = ()=>{
                     </li>
                 </ul>
             </nav>
-        );
+        )
     }
 }
 

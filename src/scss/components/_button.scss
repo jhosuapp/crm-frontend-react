@@ -37,9 +37,6 @@
     &--secondary{
         background-color: transparent;
     }
-    &--tertiary{
-        background-color: red;
-    }
     &--danger{
         background-color: fun.color('danger') !important;
         border-color: fun.color('danger');
@@ -55,6 +52,17 @@
         &::before,
         &::after{
             height: 210%;
+        }
+    }
+    &--tertiary{
+        border: 2px solid fun.color('white');
+        &:hover{
+            border-color: fun.color('white') !important;
+            color: fun.color('secondary');
+            &::after,
+            &::before{
+                background-color: fun.color('white');
+            }
         }
     }
 }

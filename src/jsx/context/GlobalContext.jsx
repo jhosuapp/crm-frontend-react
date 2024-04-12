@@ -40,6 +40,12 @@ const GlobalProvider = ({ children })=>{
         setHamburger(!hamburger);
     }
 
+    //Logout
+    const Logout = () =>{
+        localStorage.removeItem('t0k3n');
+        setToken('');
+    }
+
     return (
         <GlobalContext.Provider value={ { 
             globalError, 
@@ -60,6 +66,7 @@ const GlobalProvider = ({ children })=>{
             VerifyToken,
             token, 
             setToken,
+            Logout,
         } }>
             { children }
         </GlobalContext.Provider>
