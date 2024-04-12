@@ -13,16 +13,20 @@ const Login = ()=>{
     //Hook form react
     const { register, handleSubmit, formState: { errors } } = useForm();
     //Global context
-    const { globalModal, setGlobalModal } = useContext(GlobalContext);
+    const { globalModal, setGlobalModal, handleClick, setToken } = useContext(GlobalContext);
     const navigate = useNavigate();
     //request
     const request = async (body)=>{
         await baseAxios.post('iniciar-sesion', body)
             .then(response=>{
                 if(response.status == 200){
-                    navigate("/clientes");
+                    //Save token
+                    localStorage.setItem('t0k3n', response.data.token);
+                    setToken(response.data.token);
+                    //Animation and redirect
+                    handleClick();
+                    navigate("/");
                 }else{
-                    console.log('entra');
                     setGlobalModal(true);
                 }
             }).catch(err=>{
@@ -30,7 +34,6 @@ const Login = ()=>{
                 console.log(err);
             })
     }
-
 
     //Request when all input are ok
     const onSubmit = data => data && request(data);

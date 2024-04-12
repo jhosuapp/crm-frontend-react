@@ -1,4 +1,7 @@
+//Hooks react
 import { createContext, useState } from "react";
+//Verify token
+import { VerifyToken } from '../components/auth/VerifyToken';
 
 const GlobalContext = createContext();
 
@@ -11,6 +14,11 @@ const GlobalProvider = ({ children })=>{
     const [ globalTransition, setGlobalTransition ] = useState(false);
     const [ globalDelete, setGlobalDelete ] = useState('');
     const [ hamburger, setHamburger ] = useState(false);
+    const [ token, setToken ] = useState('');
+    const [ auth, setAuth ] = useState({
+        token: "",
+        auth: false
+    });
 
     //Show && hidde transition
     const handleClick = ()=>{
@@ -46,7 +54,12 @@ const GlobalProvider = ({ children })=>{
             setGlobalDelete,
             enableMenu,
             hamburger, 
-            setHamburger
+            setHamburger,
+            auth, 
+            setAuth,
+            VerifyToken,
+            token, 
+            setToken,
         } }>
             { children }
         </GlobalContext.Provider>

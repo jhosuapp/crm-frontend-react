@@ -11,8 +11,8 @@ import { Modal } from '../global/Modal';
 import { ClientList } from './ClientList';
 import { ClientHeader } from './ClientHeader';
 import { ClientFilter } from './ClientFilter';
-import { GlobalContext } from '../../context/GlobalContext.jsx';
 //Context
+import { GlobalContext } from '../../context/GlobalContext.jsx';
 
 const Client = ()=>{
     const { globalDelete, globalModal, globalError } = useContext(GlobalContext);

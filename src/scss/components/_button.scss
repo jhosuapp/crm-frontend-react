@@ -37,6 +37,9 @@
     &--secondary{
         background-color: transparent;
     }
+    &--tertiary{
+        background-color: red;
+    }
     &--danger{
         background-color: fun.color('danger') !important;
         border-color: fun.color('danger');
