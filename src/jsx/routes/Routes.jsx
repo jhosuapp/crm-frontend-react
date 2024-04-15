@@ -19,7 +19,7 @@ const Routing = ()=>{
     return( 
         <Routes>
             {/* Clients routes */}
-            <Route path="/" element={ <Client /> } exact />
+            <Route path="/clientes" element={ <Client /> } exact />
             <Route path="/clientes/crear" element={ <ClientCreate /> } exact />
             <Route path="/clientes/editar/:id" element={ <ClientEdit /> } exact />
 
@@ -31,7 +31,7 @@ const Routing = ()=>{
             <Route path="/pedidos" element={ <Order /> } exact />
             <Route path="/pedidos/asignar/:id" element={ <OrderCreate /> } exact />
             {/* Login */}
-            <Route path={"/iniciar-sesion"} element={ <Login /> } exact></Route>
+            <Route path={"/"} element={ <Login /> } exact></Route>
         </Routes>
     );
 }

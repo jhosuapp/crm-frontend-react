@@ -19,7 +19,7 @@ const HeaderNaV = ()=>{
             setNav(true)
         }).catch(err=>{
             setNav(false);
-            navigate('/iniciar-sesion');
+            navigate('/');
         });
     }, [token]);
     //Get state auth user
@@ -29,7 +29,7 @@ const HeaderNaV = ()=>{
             <nav>
                 <ul>
                     <li>
-                        <Link to={"/"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Clientes</Link>
+                        <Link to={"/clientes"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Clientes</Link>
                     </li>
                     <li>
                         <Link to={"/productos"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Productos</Link>

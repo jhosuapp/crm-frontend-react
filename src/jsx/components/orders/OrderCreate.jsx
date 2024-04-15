@@ -16,7 +16,7 @@ const OrderCreate = ()=>{
     return (
         <>
             <Container cls={'container container--bg custom-fonts'}>  
-                <Title text_title={'Crear pedido'} cls={'reverse'} btn_text={'volver'} btn_link={'/'} />
+                <Title text_title={'Crear pedido'} cls={'reverse'} btn_text={'volver'} btn_link={'/clientes'} />
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
                 <OrderClient></OrderClient>

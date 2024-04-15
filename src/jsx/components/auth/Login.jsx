@@ -25,7 +25,7 @@ const Login = ()=>{
                     setToken(response.data.token);
                     //Animation and redirect
                     handleClick();
-                    navigate("/");
+                    navigate("/clientes");
                 }else{
                     setGlobalModal(true);
                 }

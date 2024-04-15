@@ -36,7 +36,7 @@ const ClientCreate = ()=>{
     return (
         <>
             <Container cls={'container container--bg custom-fonts'}>  
-                <Title text_title={'Crear cliente'} cls={'reverse'} btn_text={'volver'} btn_link={'/'} />
+                <Title text_title={'Crear cliente'} cls={'reverse'} btn_text={'volver'} btn_link={'/clientes'} />
             </Container>
             <Container cls={'container container--bg custom-fonts custom-input'}>
                 <form className='custom-form' onSubmit={ handleSubmit(onSubmit) } noValidate={true}>
@@ -113,7 +113,7 @@ const ClientCreate = ()=>{
                 cls={`${globalError ? 'modal--error' : 'modal--success'} ${globalModal && 'active'}`} 
                 icon={globalError} 
                 message={`${globalError ? 'El correo ingresado ya se encuentra registrado' : 'Registro exitoso'}`} 
-                link={'/'} 
+                link={'/clientes'} 
             />
         </>
     );

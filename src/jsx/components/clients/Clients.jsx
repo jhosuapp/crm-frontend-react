@@ -72,7 +72,7 @@ const Client = ()=>{
                 cls={`${globalError ? 'modal--error' : 'modal--success'} ${globalModal && 'active'}`} 
                 icon={globalError} 
                 message={`${globalError ? 'El cliente no ha podido ser eliminado, intetanlo nuevamente' : 'Cliente eliminado de manera exitosa'}`} 
-                link={'/'}
+                link={'/clientes'}
             />
         </>
     )
