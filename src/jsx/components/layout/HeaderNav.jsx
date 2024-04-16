@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 //Global context
 import { GlobalContext } from "../../context/GlobalContext";
+//Icon
+import IconLogout from "../../../assets/svg/icon-logout.svg";
 
 
 const HeaderNaV = ()=>{
@@ -38,7 +40,10 @@ const HeaderNaV = ()=>{
                         <Link to={"/pedidos"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Pedidos</Link>
                     </li>
                     <li>
-                        <a className='btn btn--tertiary' onClick={ (e)=>{ Logout(); handleClick(); enableMenu(e); } }>Cerrar sesión</a>
+                        <a className='btn btn--icon btn--tertiary' onClick={ (e)=>{ Logout(); handleClick(); enableMenu(e); } }>
+                            <img src={ IconLogout } />
+                            Cerrar sesión
+                        </a>
                     </li>
                 </ul>
             </nav>

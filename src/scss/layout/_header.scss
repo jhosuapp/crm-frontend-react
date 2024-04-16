@@ -42,7 +42,7 @@ header{
             gap: 15px;
             a{
                 color: fun.color('white');
-                font-size: 1.6rem;
+                font-size: 1.4rem;
                 text-transform: uppercase;
                 font-weight: 500;
                 cursor: pointer;
@@ -64,6 +64,11 @@ header{
                         left: 0;
                     }
                 }
+            }
+            .btn{
+                font-size: 1.4rem;
+                max-height: 35px;
+                gap: 5px;
             }
         }
     }

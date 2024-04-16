@@ -57,12 +57,19 @@
     &--tertiary{
         border: 2px solid fun.color('white');
         &:hover{
-            border-color: fun.color('white') !important;
-            color: fun.color('secondary');
+            border-color: fun.color('cuartary') !important;
+            color: fun.color('white');
             &::after,
             &::before{
-                background-color: fun.color('white');
+                background-color: fun.color('cuartary');
             }
+        }
+    }
+    &--icon{
+        gap: 10px;
+        img{
+            width: 15px;
+            filter: brightness(1000000%);
         }
     }
 }
