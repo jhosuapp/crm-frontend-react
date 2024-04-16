@@ -53,7 +53,7 @@ const HeaderNaV = ()=>{
             <nav>
                 <ul>
                     <li>
-                        <Link to={"/iniciar-sesion"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Iniciar sesión</Link>
+                        <Link to={"/"} onClick={(e)=>{ handleClick(); enableMenu(e); }}>Iniciar sesión</Link>
                     </li>
                 </ul>
             </nav>

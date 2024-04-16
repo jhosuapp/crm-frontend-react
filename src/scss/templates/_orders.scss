@@ -189,10 +189,11 @@
             p, img, .block{
                 flex: 1;
                 &:last-child{
-                    max-width: 100px;
-                    text-align: right;
+                    max-width: 150px;
+                    text-align: left;
                 }
             }
+
             .block{
                 display: flex;
                 gap: 5px;
