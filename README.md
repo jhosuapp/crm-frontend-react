@@ -28,7 +28,7 @@ Your users should be able to:
 - Solution URL: [Github](https://github.com/jhosuapp/crm-frontend-react/)
 
 - Live Site URL: [Github Pages](https://jhosuapp.github.io/crm-frontend-react/)
-- Live Site URL: [Github Pages](https://stately-sfogliatella-5d5712.netlify.app/)
+- Live Site URL: [Netlify](https://stately-sfogliatella-5d5712.netlify.app/)
 
 ## Installation
 
